@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Link, Switch } from "react-router-dom";
+
+import Login from "./components/Login.js";
+import FriendList from "./components/FriendList.js";
+import PrivateRoute from "./utils/PrivateRoute.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        <li>
+          <Link to="/" className="link">Home</Link>
+        </li>
+        <li>
+          <Link to="/login" className="link">Login</Link>
+        </li>
+        <li>
+          <Link to="/friends" className="link">Friends</Link>
+        </li>
+      </ul>
+      <h1>Test from App.js. This is HOME.</h1> 
+      <Switch>
+        <PrivateRoute path="/friends" component={FriendList} />
+        <Route exact path="/"  />
+        <Route path="/login" component={Login} />
+      </Switch>
     </div>
   );
 }

@@ -35,7 +35,7 @@ const Login = props => {
     return (
         <div>
             <h1>Hello from the Login.js file</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="forms-style" onSubmit={handleSubmit}>
                 <input 
                     type="text"
                     name="username"
@@ -54,7 +54,7 @@ const Login = props => {
                     onChange={handleChange}
                     className="input"
                 />
-                <button className="login-button">Login</button>
+                <button className="btn-style">Login</button>
             </form>
         </div>
     )

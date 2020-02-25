@@ -23,17 +23,17 @@ const Login = props => {
     const handleSubmit = e => {
         e.preventDefault();
         axiosWithAuth()
-            .post('/api/login', user.credentials )
+            .post('login', user.credentials )
             .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.payload);
-                props.history.push('/friends');
+                props.history.push('/people');
             })
             .catch(err => console.log(`Login.js axiosWithAuth error`, err.response))
     }
 
     return (
-        <div>
+        <div className="login">
             <h1>Please login to view and add your Friends</h1>
             <form className="forms-style" onSubmit={handleSubmit}>
                 <input 

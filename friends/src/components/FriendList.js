@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
+// import { Link } from "react-router-dom";
 
 import FriendsCard from "./FriendsCard.js";
 
-const FriendList = () => {
+export default function FriendList () {
     const [ friends, setFriends ] = useState([])
     const [ newFriend, setNewFriend ] = useState({
         name:'',
@@ -13,8 +14,10 @@ const FriendList = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .get('/api/friends')
-            .then(res => setFriends(res.data))
+            .get('friends')
+            .then(res => {
+                setFriends(res.data)
+            })
             .catch(err => console.log('FriendsList.js axiosWithAuth has an error!', err.response))
     }, [])
 
@@ -32,7 +35,7 @@ const FriendList = () => {
         e.preventDefault();
         
         axiosWithAuth()
-            .post('/api/friends', newFriend)
+            .post('friends', newFriend)
             .then(res => {
                 console.log(res);
                 setFriends(res.data);
@@ -81,11 +84,21 @@ const FriendList = () => {
             </div>
             <div className="friends-container">
                 {friends.map(friend => (
-                    <FriendsCard key={friend.id} friend={friend} />
+                    <FriendDetails key={friend.id} friend={friend}/>
                 ))}
             </div>
+            
         </div>
     )
 }
 
-export default FriendList;
+function FriendDetails ({ friend }) {
+    return (
+        // <Link to={`people/${friend.id}`}>
+        //     <FriendsCard friend={friend} />
+        // </Link>
+        
+        <FriendsCard friend={friend} />
+        
+    )
+}

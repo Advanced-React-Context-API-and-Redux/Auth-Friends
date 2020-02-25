@@ -24,7 +24,7 @@ const Header = () => {
                     <Link to="/login" className="nav-link">Login</Link>
                 </li>
                 <li className="nav-li">
-                    <Link to="/friends" className="nav-link">Friends</Link>
+                    <Link to="/people" className="nav-link">Friends</Link>
                 </li>
             </ul>
         </div>

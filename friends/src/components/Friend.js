@@ -101,9 +101,9 @@ const Friend = (props) => {
                 ) : (
                     <div className="card">
                         <button onClick={removeFriend} className="card-btn-style delete">X</button>
-                        <h1>{person.name}</h1>
-                        <h2>{person.age}</h2>
-                        <h2>{person.email}</h2>
+                        <h1>Name: {person.name}</h1>
+                        <h2>Age: {person.age}</h2>
+                        <h2>Email: {person.email}</h2>
                         <button onClick={update} className="card-btn-style edit">Update Friend</button>
                     </div>
                 )}

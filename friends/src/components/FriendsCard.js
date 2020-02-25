@@ -7,7 +7,7 @@ const FriendsCard = ({ friend }) => {
     const { name, age, email } = friend;
 
     return(
-        <div>
+        <div className="card">
             <h1>{name}</h1>
             <h2>{age}</h2>
             <h2>{email}</h2>

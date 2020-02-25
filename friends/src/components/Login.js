@@ -34,7 +34,7 @@ const Login = props => {
 
     return (
         <div>
-            <h1>Hello from the Login.js file</h1>
+            <h1>Please login to view and add your Friends</h1>
             <form className="forms-style" onSubmit={handleSubmit}>
                 <input 
                     type="text"

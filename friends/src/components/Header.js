@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+
+    const signOut = e => {
+        window.localStorage.clear()
+    }
+
     return (
         <div className="nav-bar">
             <h1 className="friends-title">
@@ -25,6 +30,9 @@ const Header = () => {
                 </li>
                 <li className="nav-li">
                     <Link to="/people" className="nav-link">Friends</Link>
+                </li>
+                <li className="nav-li">
+                    <Link to="/login" onClick={signOut} className="nav-link">Sign Out</Link>
                 </li>
             </ul>
         </div>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
 import { NavLink } from "react-router-dom";
+import { ClassicSpinner } from "react-spinners-kit";
 
 import FriendsCard from "./FriendsCard.js";
 
 export default function FriendList () {
+    const [ loading, setLoading ] = useState(true);
     const [ friends, setFriends ] = useState([])
     const [ newFriend, setNewFriend ] = useState({
         name:'',
@@ -12,10 +14,15 @@ export default function FriendList () {
         email: ''
     })
 
+    const spinner = () => {
+        setLoading(!loading)
+    }
+
     useEffect(() => {
         axiosWithAuth()
             .get('friends')
             .then(res => {
+                setTimeout(spinner, 700)
                 setFriends(res.data)
             })
             .catch(err => console.log('FriendsList.js axiosWithAuth has an error!', err.response))
@@ -30,8 +37,7 @@ export default function FriendList () {
 
     }
 
-    const handleSubmit = e => {
-        
+    const handleSubmit = e => {    
         e.preventDefault();
         
         axiosWithAuth()
@@ -49,8 +55,14 @@ export default function FriendList () {
     }
 
     return (
-        <div>
-            <div>
+        <div className="friend-list-container">
+            { loading === true ? (
+                <div className="spinner">
+                    <h1>Loading friends...</h1>
+                    <ClassicSpinner  size={100} color="#000000" loading={true} />
+                </div>
+            ) : (
+                <div>
                 <form className="form-style" onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -81,12 +93,14 @@ export default function FriendList () {
                     />
                     <button className="btn-style">Add Friend</button>
                 </form>
-            </div>
-            <div className="friends-container">
-                {friends.map(friend => (
-                    <FriendDetails key={friend.id} friend={friend}/>
-                ))}
-            </div>
+                <div className="friends-container">
+                    {friends.map(friend => (
+                        <FriendDetails key={friend.id} friend={friend}/>
+                    ))}
+                </div>
+                </div>
+            )}
+            
             
         </div>
     )

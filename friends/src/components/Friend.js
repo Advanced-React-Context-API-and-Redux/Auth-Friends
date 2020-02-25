@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import FriendsCard from "./FriendsCard.js";
 import { useParams } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
 
@@ -49,6 +48,19 @@ const Friend = (props) => {
         setEditing(!editing);
     }
 
+    const removeFriend = e => {
+        console.log(e);
+
+        axiosWithAuth()
+            .delete(`friends/${id}`, id)
+            .then(res => {
+                console.log(res.data)
+                props.history.push('/people')
+
+            })
+            .catch(err => console.log(`There was an error deleting, try again!`, err.response))
+    }
+
     return (
             <div>
                 {person === undefined ? (
@@ -88,10 +100,11 @@ const Friend = (props) => {
                     </div>
                 ) : (
                     <div className="card">
-                    <h1>{person.name}</h1>
-                    <h2>{person.age}</h2>
-                    <h2>{person.email}</h2>
-                    <button onClick={update}>Update Friend</button>
+                        <button onClick={removeFriend} className="card-btn-style delete">X</button>
+                        <h1>{person.name}</h1>
+                        <h2>{person.age}</h2>
+                        <h2>{person.email}</h2>
+                        <button onClick={update} className="card-btn-style edit">Update Friend</button>
                     </div>
                 )}
         </div>

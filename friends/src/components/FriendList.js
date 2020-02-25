@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth.js";
-// import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import FriendsCard from "./FriendsCard.js";
 
@@ -94,11 +94,8 @@ export default function FriendList () {
 
 function FriendDetails ({ friend }) {
     return (
-        // <Link to={`people/${friend.id}`}>
-        //     <FriendsCard friend={friend} />
-        // </Link>
-        
-        <FriendsCard friend={friend} />
-        
+        <NavLink to={`people/${friend.id}`} className="edit-nav-link">
+            <FriendsCard friend={friend} />
+        </NavLink>
     )
 }

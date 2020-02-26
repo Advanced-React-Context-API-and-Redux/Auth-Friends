@@ -22,7 +22,7 @@ export default function FriendList () {
         axiosWithAuth()
             .get('friends')
             .then(res => {
-                setTimeout(spinner, 700)
+                setTimeout(spinner, 500)
                 setFriends(res.data)
             })
             .catch(err => console.log('FriendsList.js axiosWithAuth has an error!', err.response))
@@ -58,8 +58,8 @@ export default function FriendList () {
         <div className="friend-list-container">
             { loading === true ? (
                 <div className="spinner">
-                    <h1>Loading friends...</h1>
-                    <ClassicSpinner  size={100} color="#000000" loading={true} />
+                    <h1>Load≈(U+200B)ing friends...</h1>
+                    <ClassicSpinner size={100} color="#000000" loading={true} />
                 </div>
             ) : (
                 <div>
@@ -100,8 +100,6 @@ export default function FriendList () {
                 </div>
                 </div>
             )}
-            
-            
         </div>
     )
 }

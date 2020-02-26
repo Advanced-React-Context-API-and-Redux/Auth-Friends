@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
 
     const signOut = e => {
-        window.localStorage.clear()
+        window.localStorage.removeItem('token');
     }
 
     return (

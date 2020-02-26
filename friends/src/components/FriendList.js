@@ -58,7 +58,7 @@ export default function FriendList () {
         <div className="friend-list-container">
             { loading === true ? (
                 <div className="spinner">
-                    <h1>Load≈(U+200B)ing friends...</h1>
+                    <h1>Loa≈U+200Bding friends...</h1>
                     <ClassicSpinner size={100} color="#000000" loading={true} />
                 </div>
             ) : (
